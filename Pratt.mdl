@@ -1,0 +1,20 @@
+ -- Boolean
+let true = \x y . x;
+let false = \x y . y;
+let test l m n = l m n;
+let and x y = x y false;
+let iszero n = n (\x . false) true;
+ -- Pair
+let pair f s = \x . x f s; 
+let fst p = p true; 
+let snd p = p false; 
+ -- Arithmetic
+let succ n = \s z . s (n s z);
+let plus m n = \s z . n s (m s z);
+let mult m n = \f . m (plus n) 0;
+let pred m = let zz = pair 0 0 in 
+             let ss = \p . pair (snd p)(plus 1 (snd p)) in 
+             fst (m ss zz);
+ --  List 
+ --  [x,y,z] == c x (c y (c z n))
+ --  nill, isnill, cons,  head, tail --(як pred)    
