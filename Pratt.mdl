@@ -11,10 +11,25 @@ let snd p = p false;
  -- Arithmetic
 let succ n = \s z . s (n s z);
 let plus m n = \s z . n s (m s z);
-let mult m n = \f . m (plus n) 0;
+let mult m n = m (plus n) 0;
 let pred m = let zz = pair 0 0 in 
              let ss = \p . pair (snd p)(plus 1 (snd p)) in 
              fst (m ss zz);
  --  List 
  --  [x,y,z] == c x (c y (c z n))
  --  nill, isnill, cons,  head, tail --(як pred)    
+let cons m lst = \c n. c m (lst c n);
+let nill = \c n . n;
+let isnill lst = lst (\x y.false) true;
+let tl = \c n. c 1(c 5 (c 56 (c 8 n))); --- приклад списку
+
+let head lst = lst true false;
+let tail lst = let nn = pair nill nill in
+               let cc = \x p. pair (snd p) (cons x (snd p)) in
+               fst (lst cc nn);
+-- cons 1 nill
+-- isnill \c n. c 1(c 5 (c 56 (c 8 n)))			   
+-- head tl
+-- head nill
+--head (tail (tail tl))
+mult 4 6

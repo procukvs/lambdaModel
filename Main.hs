@@ -31,7 +31,7 @@ process line = do
         sequence_ (map putStrLn (ppprog  prog))
  --       print te
  --       evalStep 30 prog
- --       eval 500 prog
+        eval 500 prog
 
 --  покрокове обчислення і друк 
 evalStep :: Int -> Program -> IO()

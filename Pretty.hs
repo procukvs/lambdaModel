@@ -24,7 +24,7 @@ instance Pretty Name where
 
 instance Pretty Term where
   ppr _ (Var x _ _)         = text x
-  ppr p (Let a b c) = text "let" <> ppr p a <+> text  "=" <+> ppr p b <+> text "in" <+> ppr p c
+  ppr p (Let a b c) = text "\n  let" <+> ppr p a <+> text  "=" <+> ppr p b <+> text "in" <+> ppr p c
   ppr _ (Nmb x _ )         = text x
  -- ppr _ (Lit (LBool b)) = text (show b)
   ppr p e@(App _ _)     = parensIf (p>0) (ppr p f <+> sep (map (ppr (p+1)) xs))

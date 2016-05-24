@@ -1,0 +1,31 @@
+-- Boolean
+let id = \x.x;
+let true = \x y . x;
+let false = \x y . y;
+let and x y = x y false;
+let or x y = x true y;
+let not x = x false true;
+let iszero n = n false not false;
+
+
+ -- Pair
+let pair f s = \x . x f s; 
+let fst p = p true; 
+let snd p = p false; 
+
+-- Arithmetic
+let succ n = \s z . s (n s z);
+let plus m n = n succ m;
+let mult m n = \z. m (n  z);
+let pred n = let step = \p. pair (succ (fst p))(fst p) in
+             (n step (pair 0 0)) false;
+let sub m n = n pred m;	
+-- Equality
+let ge n m = iszero (sub m n); 	
+let eq n m = and (ge n m) (ge m n); 
+
+
+--plus 6 4 
+-- mult1  6 4
+--iszero 7 
+eq 2 2
